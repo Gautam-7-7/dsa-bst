@@ -4,7 +4,7 @@
 
 int main() {
     node* root = NULL;
-    int choice, id;
+    int choice, id, minID, maxID;
 
     while (1) {
         printf("\n--- Hospital Management System ---\n");
@@ -17,7 +17,9 @@ int main() {
         printf("7. Schedule Appointment\n");
         printf("8. View Appointments\n");
         printf("9. Emergency (Lowest ID)\n");
-        printf("10. Exit\n");
+        printf("10. Find Patients in ID Range\n");
+        printf("11. Get Patient Count\n");
+        printf("12. Exit\n");
         printf("Choose option: ");
 
         if (scanf("%d", &choice) != 1) {
@@ -84,6 +86,21 @@ int main() {
                 printf("No patients.\n");
 
         } else if (choice == 10) {
+            printf("Enter min ID: ");
+            scanf("%d", &minID);
+            printf("Enter max ID: ");
+            scanf("%d", &maxID);
+            if (minID > maxID) {
+                printf("Invalid range.\n");
+                continue;
+            }
+            findPatientsInRange(root, minID, maxID);
+
+        } else if (choice == 11) {
+            int count = getPatientCount(root);
+            printf("Total patients: %d\n", count);
+
+        } else if (choice == 12) {
             freeTree(root);
             freeAppointments();
             break;
@@ -94,3 +111,4 @@ int main() {
     }
     return 0;
 }
+
