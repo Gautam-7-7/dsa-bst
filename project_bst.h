@@ -40,5 +40,9 @@ void scheduleAppointment(node* root);
 void printAppointments();
 void removeAppointmentsByPatient(int pid);
 void freeAppointments();
+void findPatientsInRange(node* root, int minID, int maxID);
+int getPatientCount(node* root);
 
 #endif
+
+
