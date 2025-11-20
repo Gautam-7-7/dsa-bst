@@ -191,3 +191,18 @@ void scheduleAppointment(node* root) {
     addAppointmentInternal(pid, dt);
     printf("Appointment added for %s at %s\n", found->data->name, dt);
 }
+
+void findPatientsInRange(node* root, int minID, int maxID) {
+    if (!root) return;
+    if (root->data->id > minID)
+        findPatientsInRange(root->left, minID, maxID);
+    if (root->data->id >= minID && root->data->id <= maxID)
+        printPatient(root->data);
+    if (root->data->id < maxID)
+        findPatientsInRange(root->right, minID, maxID);
+}
+
+int getPatientCount(node* root) {
+    if (!root) return 0;
+    return 1 + getPatientCount(root->left) + getPatientCount(root->right);
+}
